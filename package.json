@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.10.2",
+    "nodemon": "^3.1.9"
+  },
+  "name": "simple-posts-management",
+  "version": "1.0.0",
+  "description": "A simple API that allow users to manage posts",
+  "main": "server.js",
+  "scripts": {
+    "devStart": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StyvenManaja/simple-posts-management.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StyvenManaja/simple-posts-management/issues"
+  },
+  "homepage": "https://github.com/StyvenManaja/simple-posts-management#readme"
+}
