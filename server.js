@@ -38,11 +38,17 @@ app.get('/', authentication, (req, res) => {
     let username = req.username;
     res.json({ message: `Hello, ${username}` });
 });
+app.get('/posts', authentication, endpoints.getAllPosts);
 
 app.post('/register', endpoints.registerUser);
 app.post('/login', endpoints.loginUser);
 app.post('/refresh', endpoints.refreshToken);
 app.post('/logout', endpoints.logout);
+app.post('/newPost', authentication, endpoints.createPost);
+
+app.put('/update/:id', authentication, endpoints.updatePost);
+
+app.delete('/delete/:id', authentication, endpoints.deletePost);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

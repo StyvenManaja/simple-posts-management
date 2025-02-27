@@ -113,4 +113,80 @@ const logout = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser, refreshToken, logout };
+const createPost = async (req, res) => {
+    try {
+        let { title, content } = req.body;
+
+        if(!title || !content) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+    
+        let postData = {
+            title : title,
+            content : content,
+            author : req.username
+        }
+    
+        let post = await dataManagement.createPost(postData);
+        res.status(201).json({ post : post, message: 'Post created successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
+const getAllPosts = async (req, res) => {
+    try {
+        let postsList = await dataManagement.getAllPosts();
+        if(!postsList) {
+            res.status(400).json({ message : 'No post available' });
+        }
+
+        res.json({ postsLists : postsList });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
+const updatePost = async (req, res) => {
+    try {
+        let { id } = req.params;
+        let { title, content } = req.body;
+        let author = req.username;
+
+        let newPostData = {
+            title : title,
+            content :content
+        }
+
+        let postUpdated = await dataManagement.updatePost(id, author, newPostData);
+        if(!postUpdated) {
+            return res.status(403).json({ message : 'Error updating post' });
+        }
+
+        res.json({ postUpdated : postUpdated });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
+const deletePost = async (req, res) => {
+    try {
+        let { id } = req.params;
+        let author = req.username;
+
+        let deleted = await dataManagement.deletePost(id, author);
+        if(!deleted) {
+            return res.status(400).json({ message: 'Post not found or already deleted' });
+        }
+
+        res.json({ message : 'Post deleted' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
+module.exports = { registerUser, loginUser, refreshToken, logout, createPost, getAllPosts, updatePost, deletePost };

@@ -27,7 +27,28 @@ const refreshTokenSchema = new mongoose.Schema({
     }
 });
 
+const postSchema = new mongoose.Schema({
+    title : {
+        type : String,
+        required : true,
+    },
+    content : {
+        type : String,
+        required : true,
+        maxlength : 250
+    },
+    addedAt : {
+        type : Date,
+        default : new Date()
+    },
+    author : {
+        type : String,
+        required : true
+    }
+})
+
 const userModel = mongoose.model('users', userSchema);
 const refreshTokenModel = mongoose.model('refreshTokens', refreshTokenSchema);
+const postModel = mongoose.model('posts', postSchema);
 
-module.exports = { userModel, refreshTokenModel };
+module.exports = { userModel, refreshTokenModel, postModel };
