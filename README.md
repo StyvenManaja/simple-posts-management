@@ -12,7 +12,7 @@ Une API REST simple permettant la gestion de publications (posts). Ce projet est
 ## Technologies utilisées
 - Node.js
 - Express.js
-- JSON comme base de données temporaire (peut être remplacé par MongoDB ou PostgreSQL)
+- MongoDB comme base de donnée
 
 ## Installation
 
@@ -62,11 +62,6 @@ L’API sera accessible sur `http://localhost:3000`.
 ### ➤ Supprimer un post
 - **Méthode** : `DELETE`
 - **URL** : `/posts/:id`
-
-## Améliorations possibles
-🚀 Ajout d'une base de données (MongoDB ou PostgreSQL)
-🚀 Gestion des utilisateurs et authentification JWT
-🚀 Hébergement de l’API (Render, Vercel, Railway)
 
 ## Auteur
 👤 **Styven Manaja**
